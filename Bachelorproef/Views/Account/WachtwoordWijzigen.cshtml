@@ -1,0 +1,41 @@
+﻿@model Bachelorproef.Models.LocalPasswordModel
+
+@{
+    ViewBag.Title = "Wachtwoord wijzigen";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+</hgroup>
+
+<section id="wachtwoordWijzigenForm">
+    <h2>Dit is uw eerste aanmelding. Gelieve uw wachtwoord te wijzigen.</h2>
+    @ViewBag.NaamGebr
+    @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <legend>Wachtwoord wijzigen form</legend>
+            <ol>
+                <li>
+                    @Html.LabelFor(m => m.OldPassword)
+                    @Html.PasswordFor(m => m.OldPassword)
+                    @Html.ValidationMessageFor(m => m.OldPassword)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.NewPassword)
+                    @Html.PasswordFor(m => m.NewPassword)
+                    @Html.ValidationMessageFor(m => m.NewPassword)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.ConfirmPassword)
+                    @Html.PasswordFor(m => m.ConfirmPassword)
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                </li>
+            </ol>
+            <input type="submit" value="Log in" />
+        </fieldset>
+    }
+</section>
